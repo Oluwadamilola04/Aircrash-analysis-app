@@ -13,6 +13,7 @@ def load_data():
     df['Sum of Fatalities(ground)'] = pd.to_numeric(df['Sum of Fatalities(ground)'])
     df['Total Fatalities'] = df['Sum of Fatalities(ground)'] + df['Sum of Fatalities (air)']
     # Extract year from the date column
+    df['Crash Date'] = pd.to_datetime(df['Crash Date'])
     df['Year'] = df['Crash Date'].dt.year
 
     return df
