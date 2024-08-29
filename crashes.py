@@ -4,8 +4,8 @@ import pandas as pd
 #import matplotlib.pyplot as plt # type: ignore
 
 def load_data():
-    file = 'Air__Crash.xlsx'
-    df = pd.read_excel(file,engine='openpyxl')
+    file = 'Air__Crash.csv'
+    df = pd.read_csv(file)
     df['Operator'] = df['Operator'].fillna('Unknown')
     df['Operator'] = df['Operator'].replace('Corporation Aviation National China','China National Aviation Corporation')
     df['Country/Region'] = df['Country/Region'].fillna('Unknown')
