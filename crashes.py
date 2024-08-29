@@ -5,7 +5,7 @@ import pandas as pd
 
 def load_data():
     file = 'Air__Crash.xlsx'
-    df = pd.read_excel(file)
+    df = pd.read_excel(file,engine='openpyxl')
     df['Operator'] = df['Operator'].fillna('Unknown')
     df['Operator'] = df['Operator'].replace('Corporation Aviation National China','China National Aviation Corporation')
     df['Country/Region'] = df['Country/Region'].fillna('Unknown')
