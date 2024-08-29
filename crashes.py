@@ -1,10 +1,10 @@
 import streamlit as st
 import numpy as np
 import pandas as pd
-#import matplotlib.pyplot as plt # type: ignore
+import matplotlib.pyplot as plt # type: ignore
 
 def load_data():
-    file = 'C:/Users/HP/Data_Apps/Aircrashes_App/Air__Crash.xlsx'
+    file = 'Air__Crash.xlsx'
     df = pd.read_excel(file)
     df['Operator'] = df['Operator'].fillna('Unknown')
     df['Operator'] = df['Operator'].replace('Corporation Aviation National China','China National Aviation Corporation')
