@@ -90,30 +90,8 @@ except ValueError as e:
 try:
     st.header('Top 15 airlines with the most crashes',divider='orange')
     df2 = dfnew['Operator'].value_counts().head(15).sort_values(ascending=True)
-    df2 = df2.reset_index()
+    
     st.bar_chart(df2,y='Operator',x='count',color='#ffaa00')
-except ValueError as e:
-    st.error(
-        """ Error: """ % e.reason
-    )
-
-
-try:
-    st.header('Top 15 airlines with the most crashes',divider='orange')
-    df2 = dfnew['Operator'].value_counts().head(15).sort_values(ascending=True)
-    plt.figure(figsize=(10,4))
-    plt.barh(df2.index,df2.values,color='#ffaa00')
-
-    for i,value in enumerate(df2.values):
-       plt.annotate(str(value),xy=(value,i),
-       ha='left',va='center')
-    plt.xlabel('Airline')
-    plt.ylabel('Number of crashes')
-    
-    plt.yticks(rotation=0,ha='right')
-    plt.show()
-    
-    st.pyplot(plt)
 except ValueError as e:
     st.error(
         """ Error: """ % e.reason
