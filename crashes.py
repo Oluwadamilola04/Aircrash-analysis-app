@@ -101,19 +101,8 @@ except ValueError as e:
 try:
     st.header(f'Aircraft Models with most number of Accidents',divider='orange')
     df3 = dfnew['Aircraft'].value_counts().head(15).sort_values(ascending=True)
-    plt.figure(figsize=(10,4))
-    plt.barh(df3.index,df3.values,color='#ffaa00')
+    st.bar_chart(df3,color='#ffaa00')
 
-    for i,value in enumerate(df3.values):
-     plt.annotate(str(value),xy=(value,i),
-     ha='left',va='center')
-    plt.xlabel('Aircraft')
-    plt.ylabel('Number of crashes')
-    
-    plt.yticks(rotation=0,ha='right')
-    plt.show()
-
-    st.pyplot(plt)
 except ValueError as e:
     st.error(
         """ Error: """ % e.reason
