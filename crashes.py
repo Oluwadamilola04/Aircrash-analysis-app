@@ -154,7 +154,7 @@ fig = go.Figure(data=[go.bar(x=df3.index,y=df3.values,orientation='h',
                              marker=dict(color='#ffaa00'))])
 for i, value in enumerate(df3.values):
     fig.add_annotation(text=str(value),x=value,
-                       y=i,xanchor='left'.yanchor='middle')
+                       y=i,xanchor='left',yanchor='middle')
 fig.update_layout(
     xaxis_title='Number of Crashes',
     yaxis_title='Aircraft',
