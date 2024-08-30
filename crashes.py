@@ -1,7 +1,9 @@
+import os
+os.system('pip install matplotlib')
 import streamlit as st
 import numpy as np
 import pandas as pd
-#import matplotlib.pyplot as plt 
+import matplotlib.pyplot as plt 
 
 def load_data():
     file = 'aircrash.csv'
