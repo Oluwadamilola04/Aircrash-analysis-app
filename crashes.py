@@ -92,7 +92,7 @@ try:
     df2 = dfnew['Operator'].value_counts().head(15).sort_values(ascending=True)
     
     
-    st.bar_chart(df2,y='Operator',x='count',color='#ffaa00')
+    st.bar_chart(df2,x='count',color='#ffaa00')
 except ValueError as e:
     st.error(
         """ Error: """ % e.reason
