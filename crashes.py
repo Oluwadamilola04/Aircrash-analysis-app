@@ -90,9 +90,9 @@ except ValueError as e:
 try:
     st.header('Top 15 airlines with the most crashes',divider='orange')
     df2 = dfnew['Operator'].value_counts().head(15).sort_values(ascending=True)
-    df2 = pd.DataFrame(df2)
+    df2 = df2.reset_index()
     
-    st.bar_chart(df2,y='Operator',x='count',color='#ffaa00')
+    st.bar_chart(df2,y=df2.index,x=df2.values,color='#ffaa00')
 except ValueError as e:
     st.error(
         """ Error: """ % e.reason
