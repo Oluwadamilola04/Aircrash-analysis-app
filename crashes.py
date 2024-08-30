@@ -90,6 +90,17 @@ except ValueError as e:
 try:
     st.header('Top 15 airlines with the most crashes',divider='orange')
     df2 = dfnew['Operator'].value_counts().head(15).sort_values(ascending=True)
+    df2 = value_counts.reset_index()
+    st.bar_chart(df2,x='index',y='count()',orientation='horizontal',text='count')
+except ValueError as e:
+    st.error(
+        """ Error: """ % e.reason
+    )
+
+
+try:
+    st.header('Top 15 airlines with the most crashes',divider='orange')
+    df2 = dfnew['Operator'].value_counts().head(15).sort_values(ascending=True)
     plt.figure(figsize=(10,4))
     plt.barh(df2.index,df2.values,color='#ffaa00')
 
@@ -129,20 +140,3 @@ except ValueError as e:
     st.error(
         """ Error: """ % e.reason
     )
-
-
-st.header(f'Aircraft Models with most number of Accidents',divider='orange')
-df3 = dfnew['Aircraft'].value_counts().head(15).sort_values(ascending=True)
-fig = go.Figure(data=[go.bar(x=df3.index,y=df3.values,orientation='h',
-                             marker=dict(color='#ffaa00'))])
-for i, value in enumerate(df3.values):
-    fig.add_annotation(text=str(value),x=value,
-                       y=i,xanchor='left',yanchor='middle')
-fig.update_layout(
-    xaxis_title='Number of Crashes',
-    yaxis_title='Aircraft',
-    showlegend=False,
-    margin=dict(l=100,r=100,b=100,t=100)
-)
-
-st.plotly_chart(fig)
