@@ -90,6 +90,7 @@ except ValueError as e:
 try:
     st.header('Top 15 airlines with the most crashes',divider='orange')
     df2 = dfnew['Operator'].value_counts().head(15).sort_values(ascending=True)
+    df3 = pd.DataFrame(df2,index='Operator')
     df2 = df2.reset_index()
     
     st.bar_chart(df2,y='Operator',color='#ffaa00')
