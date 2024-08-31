@@ -87,29 +87,6 @@ except ValueError as e:
         """ Error: """ % e.reason
     )
 
-# horizontal bar chart
-try:
-    st.header('Top 15 airlines with the most crashes',divider='orange')
-    df2 = dfnew['Operator'].value_counts().head(15).sort_values(ascending=True)
-    
-    st.bar_chart(df2,color='#ffaa00')
-except ValueError as e:
-    st.error(
-        """ Error: """ % e.reason
-    )
-
-# horizontal bar chart
-try:
-    st.header(f'Aircraft Models with most number of Accidents',divider='orange')
-    df3 = dfnew['Aircraft'].value_counts().head(15).sort_values(ascending=True)
-    st.bar_chart(df3,color='#ffaa00')
-
-except ValueError as e:
-    st.error(
-        """ Error: """ % e.reason
-    )
-
-
 
 # Aggregate data by airplane and count crashes
 airplane_crash_counts = dfnew['Aircraft'].value_counts().reset_index()
