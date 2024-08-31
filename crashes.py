@@ -2,6 +2,7 @@
 import streamlit as st
 import numpy as np
 import pandas as pd
+import altair as alt
 #import matplotlib.pyplot as plt 
 
 def load_data():
@@ -107,3 +108,73 @@ except ValueError as e:
     st.error(
         """ Error: """ % e.reason
     )
+
+
+
+# Aggregate data by airplane and count crashes
+airplane_crash_counts = dfnew['Aircraft'].value_counts().reset_index()
+airplane_crash_counts.columns = ['Airplane', 'Crashes']
+
+# Select the top 15 airplanes with the highest number of crashes
+top_15_airplanes = airplane_crash_counts.head(15)
+
+# Create a horizontal bar chart using Altair
+
+st.header(f'Aircraft models with the most number of crashes',divider='orange')
+''
+chart = alt.Chart(top_15_airplanes).mark_bar(color="orange").encode(
+    y=alt.Y('Airplane:N', sort='-x', title='Airplane Type', axis=alt.Axis(labelFontSize=12, titleFontSize=14)),
+    x=alt.X('Crashes:Q', title='Number of Crashes', axis=alt.Axis(labelFontSize=12, titleFontSize=14)),
+    #color='Crashes:Q', # Color based on the number of crashes
+    tooltip=['Airplane', 'Crashes']  # Tooltip to show details on hover
+).properties(
+    width=700,
+    height=400
+).configure_axis(
+    labelFontSize=12,
+    titleFontSize=14
+).configure_title(
+    fontSize=18,
+    anchor='start'
+).interactive()
+
+
+
+
+# Display the chart in Streamlit
+st.altair_chart(chart)
+
+
+
+
+# Horizontal bar chart
+
+st.header('Top 15 airlines with the most crashes',divider='orange')
+''
+airline_crash_counts = dfnew['Operator'].value_counts().reset_index()
+airline_crash_counts.columns = ['Airline', 'Crashes']
+
+# Select the top 15 airplanes with the highest number of crashes
+top_15_airlines = airline_crash_counts.head(15)
+chart = alt.Chart(top_15_airlines).mark_bar(color="orange").encode(
+    y=alt.Y('Airline:N', sort='-x', title='Airline', axis=alt.Axis(labelFontSize=12, titleFontSize=14)),
+    x=alt.X('Crashes:Q', title='Number of Crashes', axis=alt.Axis(labelFontSize=12, titleFontSize=14)),
+    #color='Crashes:Q', # Color based on the number of crashes
+    tooltip=['Airline', 'Crashes']  # Tooltip to show details on hover
+).properties(
+    width=700,
+    height=400
+).configure_axis(
+    labelFontSize=12,
+    titleFontSize=14
+).configure_title(
+    fontSize=18,
+    anchor='start'
+).interactive()
+
+
+
+
+# Display the chart in Streamlit
+st.altair_chart(chart)
+
